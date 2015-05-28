@@ -6,19 +6,19 @@ set -e
 
 # pull in the stellar client tool
 git clone git://github.com/stellar/stellar-tutorials.git stellar-tutorials_temporary
-mkdir _client
-cp -r ./stellar-tutorials_temporary/client/* ./_client
+mkdir client
+cp -r ./stellar-tutorials_temporary/client/* ./client
 rm -Rf stellar-tutorials_temporary
 
 # build the static site
 jekyll build
 
 # remove temporary content folders
-rm -Rf _client
+rm -Rf client
 
 # prepare the temp gh-pages folder (must run ./setup.sh before this step)
 cd ../../docs-gh-pages
-git checkout --
+git checkout -- .
 git clean -dfx
 git fetch
 git rebase
